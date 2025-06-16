@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "PhishEye - Phishing Email Detector",
+  "version": "1.0",
+  "description": "Detects phishing emails and marks them in your inbox.",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/logo.png",
+      "48": "icons/logo.png",
+      "128": "icons/logo.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/logo.png",
+    "48": "icons/logo.png",
+    "128": "icons/logo.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/logo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
