@@ -3,9 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware  # 🔹 Add this import
 from pydantic import BaseModel
 import pickle
 import numpy as np
-import uvicorn
 
-from utils.preprocessing import text_preprocessing, drop_stopwords, delete_one_characters
+from Backend.utils.preprocessing import text_preprocessing, drop_stopwords, delete_one_characters
 
 app = FastAPI(title="Phishing Email Detector API")
 
@@ -19,10 +18,10 @@ app.add_middleware(
 )
 
 # Load model and feature importance
-with open("model/pipeline.pkl", "rb") as f:
+with open("Backend/model/pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
-with open("model/feature_importance.pkl", "rb") as f:
+with open("Backend/model/feature_importance.pkl", "rb") as f:
     feature_importance = pickle.load(f)
 
 vectorizer = pipeline.named_steps['tfidfvectorizer']
